@@ -35,6 +35,17 @@ public class Financing {
     @Column(nullable = false)
     private Double rate;
 
+    @Column(nullable = false)
+    private Boolean validated;
+
+    public Boolean isValidated() {
+	return validated;
+    }
+
+    public void setValidated(Boolean validated) {
+	this.validated = validated;
+    }
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private Client client;

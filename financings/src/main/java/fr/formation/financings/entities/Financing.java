@@ -38,14 +38,6 @@ public class Financing {
     @Column(nullable = false)
     private Boolean validated;
 
-    public Boolean isValidated() {
-	return validated;
-    }
-
-    public void setValidated(Boolean validated) {
-	this.validated = validated;
-    }
-
     @ManyToOne
     @JoinColumn(nullable = false)
     private Client client;
@@ -107,6 +99,14 @@ public class Financing {
 
     public void setRate(Double rate) {
 	this.rate = rate;
+    }
+
+    public Boolean isValidated() {
+	return validated;
+    }
+
+    public void setValidated(Boolean validated) {
+	this.validated = validated;
     }
 
     public Client getClient() {

@@ -1,5 +1,7 @@
 package fr.formation.financings.services;
 
+import org.springframework.stereotype.Service;
+
 import fr.formation.financings.dtos.ClientDto;
 import fr.formation.financings.entities.Client;
 import fr.formation.financings.entities.Contact;
@@ -7,6 +9,7 @@ import fr.formation.financings.entities.LegalForm;
 import fr.formation.financings.repositories.ClientRepository;
 import fr.formation.financings.repositories.ContactRepository;
 
+@Service
 public class ClientServiceImpl implements ClientService {
 
     private final ContactRepository contactRepo;
@@ -27,8 +30,10 @@ public class ClientServiceImpl implements ClientService {
 	client.setName(name);
 	LegalForm legalForm = dto.getLegalForm();
 	client.setLegalForm(legalForm);
-	Contact contact = contactRepo.getOne(dto.getContactId());
-	client.setContact(contact);
+	if (dto.getContactId() != null) {
+	    Contact contact = contactRepo.getOne(dto.getContactId());
+	    client.setContact(contact);
+	}
 	clientRepo.save(client);
     }
 

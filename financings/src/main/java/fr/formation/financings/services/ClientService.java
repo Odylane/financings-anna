@@ -10,4 +10,6 @@ public interface ClientService {
     void delete(Long id);
 
     Client getOne(Long id);
+
+    void update(ClientDto dto, Long id);
 }

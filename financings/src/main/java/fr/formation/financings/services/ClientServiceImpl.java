@@ -26,14 +26,25 @@ public class ClientServiceImpl implements ClientService {
     public void create(ClientDto dto) {
 	// Convert dto to entity Client
 	Client client = new Client();
+	populateAndSave(dto, client);
+    }
+
+    @Override
+    public void update(ClientDto dto, Long id) {
+	Client client = clientRepo.findById(id).get();
+	populateAndSave(dto, client);
+    }
+
+    private void populateAndSave(ClientDto dto, Client client) {
 	String name = dto.getName();
 	client.setName(name);
 	LegalForm legalForm = dto.getLegalForm();
 	client.setLegalForm(legalForm);
+	Contact contact = null;
 	if (dto.getContactId() != null) {
-	    Contact contact = contactRepo.getOne(dto.getContactId());
-	    client.setContact(contact);
+	    contact = contactRepo.getOne(dto.getContactId());
 	}
+	client.setContact(contact);
 	clientRepo.save(client);
     }
 

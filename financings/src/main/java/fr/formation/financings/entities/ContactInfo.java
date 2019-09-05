@@ -1,22 +1,18 @@
 package fr.formation.financings.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Embeddable // Embarquable
 public class ContactInfo {
 
-    @NotBlank
-    @Size(max = 255)
+    @Column(nullable = false, length = 255)
     private String email;
 
-    @NotBlank
-    @Size(max = 20)
+    @Column(nullable = false, length = 20)
     private String phone;
 
-    @NotBlank
-    @Size(max = 20)
+    @Column(nullable = false, length = 20)
     private String mobile;
 
     public ContactInfo() {

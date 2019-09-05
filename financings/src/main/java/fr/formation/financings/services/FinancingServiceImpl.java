@@ -25,6 +25,17 @@ public class FinancingServiceImpl implements FinancingService {
     public void create(FinancingDto dto) {
 	// Convert dto to entity:
 	Financing financing = new Financing();
+	popAndSave(dto, financing);
+    }
+
+    @Override
+    public void update(FinancingDto dto, Long id) {
+	// Convert dto to entity:
+	Financing financing = financingRepo.findById(id).get();
+	popAndSave(dto, financing);
+    }
+
+    private void popAndSave(FinancingDto dto, Financing financing) {
 	financing.setName(dto.getName());
 	financing.setAmount(dto.getAmount());
 	financing.setReference(dto.getReference());

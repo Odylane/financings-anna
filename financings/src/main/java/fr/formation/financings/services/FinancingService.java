@@ -10,4 +10,6 @@ public interface FinancingService {
     void delete(Long id);
 
     Financing getOne(Long id);
+
+    void update(FinancingDto dto, Long id);
 }
